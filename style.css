@@ -2,45 +2,27 @@ body {
     font-family: monospace, sans-serif;
     color: limegreen;
     background-color: rgb(27, 27, 27);
-    margin: 0 10%;
+    margin: 0 5%;
 }
 
-.collapsible {
-    background-color: black;
-    color: white;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-}  
 
-.collapsible:after {
-    content: '\02795';
-    font-size: 13px;
-    float: right;
-    margin-left: 5px;
+.accordion, .accordion-header, .accordion-item, .accordion-body, .accordion-button, .accordion-collapse {
+  color: whitesmoke;
+  background-color: rgb(12, 12, 12);
 }
 
-.active, .collapsible:hover {
-    background-color: black;
- }
-
-.active:after {
-    content: "\2796";
-}
- 
-.content {
-    padding: 0 18px;
-    background-color: rgb(21, 21, 21);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
+.container {
+    margin: 50px 0px;
 }
 
-button {
+.col-12 {
+    margin: 10px 0px;
+    border: 2px;
+    border-color: black;
+    border-style: double;
+}
+
+/* button {
     color: white;
     font-size: 20px;
     font-family: monospace;
@@ -60,4 +42,4 @@ button:hover {
     0% {background: black}
     50% {background: lime}
     100% {background: black}
-}
+} */
