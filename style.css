@@ -1,0 +1,28 @@
+body {
+    font-family: monospace, sans-serif;
+    color: limegreen;
+    background-color: rgb(20, 20, 20);
+    margin: 0 10%;
+}
+
+button {
+    color: white;
+    font-size: 20px;
+    font-family: monospace;
+    padding: 5px 15px 5px 15px;
+    max-width: fit-content;
+    margin-top: 10px;
+    background-color: black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    -webkit-animation: blink 0.8s infinite;
+}
+
+@-webkit-keyframes blink {
+    0% {background: black}
+    50% {background: lime}
+    100% {background: black}
+}
