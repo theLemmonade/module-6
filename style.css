@@ -2,44 +2,52 @@ body {
     font-family: monospace, sans-serif;
     color: limegreen;
     background-color: rgb(27, 27, 27);
-    margin: 0 5%;
 }
 
-
-.accordion, .accordion-header, .accordion-item, .accordion-body, .accordion-button, .accordion-collapse {
-  color: whitesmoke;
-  background-color: rgb(12, 12, 12);
+#nav {
+    margin-bottom: 40px;
 }
 
-.container {
-    margin: 50px 0px;
+#config {
+    font-size: large;
+    font-weight: 800;
 }
 
-.col-12 {
-    margin: 10px 0px;
-    border: 2px;
-    border-color: black;
-    border-style: double;
-}
-
-/* button {
-    color: white;
-    font-size: 20px;
-    font-family: monospace;
-    padding: 5px 15px 5px 15px;
-    max-width: fit-content;
-    margin-top: 10px;
-    background-color: black;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
+#cursor {
+    background: white;
+    margin-left: 3px;
     -webkit-animation: blink 0.8s infinite;
+    width: 8px;
+    height: 15px;
+}
+
+.form-control, .form-control:focus {
+    color: white;
+    background-color: black;
+    border-color: #222;
+    border: 2px;
+    height: 47px;
+}
+
+.btn {
+    color: white;
+    font-size: 24px;
+    background-color: rgb(17, 19, 22);
+    border-radius: 7px;
+    cursor: pointer;
+    border: 2px;
+}
+
+.btn:hover {
+    background: limegreen;
+}
+
+.d-grid {
+    margin: 8px 0px
 }
 
 @-webkit-keyframes blink {
-    0% {background: black}
-    50% {background: lime}
-    100% {background: black}
-} */
+    0% {background: #222}
+    50% {background: white}
+    100% {background: #222}
+}
