@@ -7,7 +7,7 @@ const result = document.getElementsByClassName('result');
 const today = document.getElementById('today');
 const forecast = document.getElementById('forecast');
 var resultsArr = Array;
-resultsArr = ['London', 'New York', 'Boston']
+resultsArr = ['London']
 var setting = String;
 setting = 'London';
 
@@ -38,21 +38,23 @@ function drawCall() {
     today.innerHTML = setting;
 }
 
-function drawResults() {
-    var newResult = document.createElement("button");
+function drawResults() {//keeps history of user searches, allows them to be called again
+    var toAdd = document.createDocumentFragment();
     for (var i = 0; i < resultsArr.length; i++) {
+        var newResult = document.createElement("button");
         newResult.setAttribute('id', resultsArr[i]);
         newResult.setAttribute('type', 'button');
-        newResult.setAttribute('class', 'result');
         newResult.addEventListener('click', reRunSearch)
-        results.appendChild(newResult);
+        newResult.className = 'result';
         newResult.innerHTML = resultsArr[i];
+        toAdd.appendChild(newResult);
     }
-    console.log('current result is = ' + resultsArr)
+    results.appendChild(toAdd);
+    console.log('current result is = ' + resultsArr);
 }
 
 
-function runSearch() {//user searched for a city
+function runSearch() {//searches 
     setting = searchInput.value;
     if (!setting) {
         searchInput.setAttribute('placeholder', 'enter a city');
@@ -71,5 +73,5 @@ function reRunSearch() {//user selected a previously saved city
 };
 
 searchBtn.addEventListener("click", runSearch);
-
+drawCall();
 drawResults();
