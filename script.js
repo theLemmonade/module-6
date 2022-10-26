@@ -1,16 +1,20 @@
 //api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
 const key = "1e54c9189a2b15bd040a0eeca759c306"
+const searchInput = document.getElementById("searchInput")
 const searchButton = document.getElementById("searchButton");
-const history = document.getElementById('history');
-var searchInput = document.getElementById('searchInput')
-var today = document.getElementById('today');
+const history = document.getElementById("history");
+const result = document.getElementsByClassName("result")
+const today = document.getElementById("today");
+const forecast = document.getElementById("forecast")
 var searchInputValue = String
 var setting = String;
 
-today.innerHTML = "glastobury, CT"
+
 
 function runCall() {
-    //call = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + myKey+ "&units=imperial";
+    console.log("runCall")
+    var call = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchInputValue + "&appid=" + key + "&units=imperial";
+    console.log(call)
     fetch(call)
     .then(function(response) {
       if (!response.ok) {
@@ -21,22 +25,29 @@ function runCall() {
     })
     .then(function(data) {
       console.log(data);
+      drawCall(data);
     })
     .catch(function(error) {
       console.error(error);
     });
 };
 
-function drawSearch() {
-    
+function drawCall() {
+    console.log("drawCall")
+    today.innerHTML = searchInputValue
 }
 
-function runSearch(event) {
+function runSearch() {
     searchInputValue = searchInput.value;
     if (!searchInputValue) {
         searchInput.setAttribute("placeholder", "enter a city");
       return;
     } 
+    console.log("User searched for " + searchInputValue);
+    searchInput.textContent = " ";
     runCall;
-    drawSearch;
   };
+
+searchInputValue = "London"
+runCall();
+searchButton.addEventListener("click", runSearch);
