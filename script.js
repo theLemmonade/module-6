@@ -1,12 +1,17 @@
-var history = document.getElementsByClassName('history'.)
-var title = document.getElementById('title');
-var setting = String
+const searchButton = document.getElementById("searchButton");
+const history = document.getElementById('history');
+var searchInput = document.getElementById('searchInput')
+var today = document.getElementById('today');
+var setting = String;
 
-function setLocation() {
-    setting = this.getAtribute('id');
-    console.log('Setting location to ' + setting + '.')
-    title.textContent = setting;
+today.innerHTML = "glastobury, CT"
 
-}
+function runSearch(event) {
+    event.preventDefault();
+    var searchInputValue = searchInput.value;
+    if (!searchInputValue) {
+        searchInput.setAttribute("placeholder", "enter a city");
+      return;
+    } 
+  };
 
-history.addEventListener('click', setLocation)
