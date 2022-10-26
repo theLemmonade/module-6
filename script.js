@@ -1,20 +1,20 @@
 //api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
-const key = "1e54c9189a2b15bd040a0eeca759c306";
-const searchInput = document.getElementById("searchInput");
-const searchButton = document.getElementById("searchButton");
-const oldResult = document.getElementById("oldResult");
-const results = document.getElementsByClassName("result");
-const today = document.getElementById("today");
-const forecast = document.getElementById("forecast");
-var searchInputValue = String;
-searchInputValue = "London";
+const key = '1e54c9189a2b15bd040a0eeca759c306';
+const searchInput = document.getElementById('searchInput');
+const searchBtn = document.getElementById('searchButton');
+const results = document.getElementById('results')
+const result = document.getElementsByClassName('result');
+const today = document.getElementById('today');
+const forecast = document.getElementById('forecast');
+var resultsArr = Array;
+resultsArr = ['London', 'New York', 'Boston']
 var setting = String;
-var data = Object
+setting = 'London';
 
 
-function runCall() {
-    console.log("runCall")
-    var call = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchInputValue + "&appid=" + key + "&units=imperial";
+function runCall() {//fetches 5 day forecast based var setting
+    console.log('runCall')
+    var call = 'https://api.openweathermap.org/data/2.5/forecast?q=' + setting + '&appid=' + key + '&units=imperial';
     console.log(call)
     fetch(call)
     .then(function(response) {
@@ -34,49 +34,42 @@ function runCall() {
 };
 
 function drawCall() {
-    console.log("drawCall");
-    today.innerHTML = searchInputValue;
+    console.log('drawCall');
+    today.innerHTML = setting;
 }
 
-
-function drawResult() {
-    var newResultText = document.getElementById(searchInputValue);
+function drawResults() {
     var newResult = document.createElement("button");
-    newResult.setAttribute("id", searchInputValue);
-    newResult.setAttribute("type", "button");
-    newResult.setAttribute("class", "result");
-    oldResult.appendChild(newResult);
-    newResultText.innerHTML = searchInputValue;
-    resultEventListener();
-    console.log(searchInputValue + " appended to location history");
+    for (var i = 0; i < resultsArr.length; i++) {
+        newResult.setAttribute('id', resultsArr[i]);
+        newResult.setAttribute('type', 'button');
+        newResult.setAttribute('class', 'result');
+        newResult.addEventListener('click', reRunSearch)
+        results.appendChild(newResult);
+        newResult.innerHTML = resultsArr[i];
+    }
+    console.log('current result is = ' + resultsArr)
 }
 
 
-function runSearch() {
-    searchInputValue = searchInput.value;
-    if (!searchInputValue) {
-        searchInput.setAttribute("placeholder", "enter a city");
+function runSearch() {//user searched for a city
+    setting = searchInput.value;
+    if (!setting) {
+        searchInput.setAttribute('placeholder', 'enter a city');
       return;
-    } 
-    console.log("User searched for " + searchInputValue);
-    searchInput.textContent = " ";
+    }
+    resultsArr.push(setting);
+    console.log('User searched for ' + setting);
     runCall();
-    drawResult();
-  };
+    drawResults();
+}
 
-function reRunSearch() {
-    searchInputValue = this.getAttribute("id");
-    console.log("User selected " + searchInputValue);
+function reRunSearch() {//user selected a previously saved city
+    setting = this.getAttribute("id");
+    console.log("User selected " + setting);
     runCall();
-    drawResult();
 };
 
-function resultEventListener() {
-    for (var i = 0; i < results.length; i++) {
-        results[i].addEventListener('click', reRunSearch, false);
-    }
-}
+searchBtn.addEventListener("click", runSearch);
 
-searchButton.addEventListener("click", runSearch);
-
-resultEventListener()
+drawResults();
