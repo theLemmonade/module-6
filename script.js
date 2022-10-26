@@ -1,14 +1,15 @@
 //api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
-const key = "1e54c9189a2b15bd040a0eeca759c306"
-const searchInput = document.getElementById("searchInput")
+const key = "1e54c9189a2b15bd040a0eeca759c306";
+const searchInput = document.getElementById("searchInput");
 const searchButton = document.getElementById("searchButton");
-const history = document.getElementById("history");
-const result = document.getElementsByClassName("result")
+const oldResult = document.getElementById("oldResult");
+const results = document.getElementsByClassName("result");
 const today = document.getElementById("today");
-const forecast = document.getElementById("forecast")
-var searchInputValue = String
+const forecast = document.getElementById("forecast");
+var searchInputValue = String;
+searchInputValue = "London";
 var setting = String;
-
+var data = Object
 
 
 function runCall() {
@@ -33,9 +34,23 @@ function runCall() {
 };
 
 function drawCall() {
-    console.log("drawCall")
-    today.innerHTML = searchInputValue
+    console.log("drawCall");
+    today.innerHTML = searchInputValue;
 }
+
+
+function drawResult() {
+    var newResultText = document.getElementById(searchInputValue);
+    var newResult = document.createElement("button");
+    newResult.setAttribute("id", searchInputValue);
+    newResult.setAttribute("type", "button");
+    newResult.setAttribute("class", "result");
+    oldResult.appendChild(newResult);
+    newResultText.innerHTML = searchInputValue;
+    resultEventListener();
+    console.log(searchInputValue + " appended to location history");
+}
+
 
 function runSearch() {
     searchInputValue = searchInput.value;
@@ -45,9 +60,23 @@ function runSearch() {
     } 
     console.log("User searched for " + searchInputValue);
     searchInput.textContent = " ";
-    runCall;
+    runCall();
+    drawResult();
   };
 
-searchInputValue = "London"
-runCall();
+function reRunSearch() {
+    searchInputValue = this.getAttribute("id");
+    console.log("User selected " + searchInputValue);
+    runCall();
+    drawResult();
+};
+
+function resultEventListener() {
+    for (var i = 0; i < results.length; i++) {
+        results[i].addEventListener('click', reRunSearch, false);
+    }
+}
+
 searchButton.addEventListener("click", runSearch);
+
+resultEventListener()
