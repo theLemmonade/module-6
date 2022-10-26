@@ -33,12 +33,25 @@ function runCall() {//fetches 5 day forecast based var setting
     });
 };
 
+function runArray() {//keep results array tidy
+    console.log('runArray')
+    if (resultsArr.includes(setting)) {
+        return;
+    } else {
+        resultsArr.push(setting)
+    };
+}
+
 function drawCall() {
     console.log('drawCall');
     today.innerHTML = setting;
 }
 
 function drawResults() {//keeps history of user searches, allows them to be called again
+    console.log('drawResults');
+    if (results != null) {
+        results.remove;
+    }
     var toAdd = document.createDocumentFragment();
     for (var i = 0; i < resultsArr.length; i++) {
         var newResult = document.createElement("button");
@@ -50,28 +63,27 @@ function drawResults() {//keeps history of user searches, allows them to be call
         toAdd.appendChild(newResult);
     }
     results.appendChild(toAdd);
-    console.log('current result is = ' + resultsArr);
+    console.log('current result list is = ' + resultsArr);
 }
 
-
-function runSearch() {//searches 
+function runSearch() {//defines setting, prepares various functions to be called
+    console.log('runSearch')
     setting = searchInput.value;
     if (!setting) {
         searchInput.setAttribute('placeholder', 'enter a city');
       return;
-    }
-    resultsArr.push(setting);
+    };
     console.log('User searched for ' + setting);
     runCall();
+    runArray();
     drawResults();
 }
 
-function reRunSearch() {//user selected a previously saved city
+function reRunSearch() {//redefines setting based on past entry, recalls function
     setting = this.getAttribute("id");
     console.log("User selected " + setting);
     runCall();
 };
 
 searchBtn.addEventListener("click", runSearch);
-drawCall();
 drawResults();
