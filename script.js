@@ -56,10 +56,10 @@ function drawCall(data) {
     cond.innerHTML = 'the conditions call for ' + data.list[0].weather[0].main;
     toAdd.appendChild(cond);
     var wind = document.createElement('p');
-    wind.innerHTML = 'the wind speed is ' + data.list[0].wind.speed + 'mph';
+    wind.innerHTML = 'the wind speed is ' + data.list[0].wind.speed + ' miles per hour';
     toAdd.appendChild(wind);
     var hmdt = document.createElement('p');
-    hmdt.innerHTML = 'the humidity is ' + data.list[0].main.humidity + '%';
+    hmdt.innerHTML = 'the humidity is ' + data.list[0].main.humidity + ' percent';
     toAdd.appendChild(hmdt);
     weather.appendChild(toAdd);
     var toLoop = document.createDocumentFragment();
