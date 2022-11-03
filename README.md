@@ -1,9 +1,23 @@
-# module-6
- A weather dashboard that features dynamically updated HTML and CSS.
+# Module 6 Challenge
 
+## Description
 
+A simple weather dashboard with a drop-down configurator that allows the user to save and switch between their favorite cities
 
+## Getting Started
 
-https://www.w3schools.com/howto/howto_js_collapsible.asp
+https://thelemmonade.github.io/module-6/
 
-https://jqueryui.com/autocomplete/#remote
+Be sure to click show_config
+
+## Screen capture
+
+![Screenshot 2022-11-03 171725](https://user-images.githubusercontent.com/112985017/199835982-c40fda9f-935c-4e37-baad-96671d0b83f7.jpg)
+
+## Authors
+
+The Author is Chris Lemmon.
+
+## Acknowledgments
+
+Botstrap documentation was referenced to create a dropdown element
