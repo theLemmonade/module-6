@@ -8,9 +8,11 @@ A simple weather dashboard with a drop-down configurator that allows the user to
 
 https://thelemmonade.github.io/module-6/
 
-B sure to click show_config
+Be sure to click show_config
 
 ## Screen capture
+
+![Screenshot 2022-11-03 171725](https://user-images.githubusercontent.com/112985017/199835982-c40fda9f-935c-4e37-baad-96671d0b83f7.jpg)
 
 ## Authors
 
