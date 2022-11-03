@@ -4,6 +4,10 @@ body {
     background-color: rgb(33, 37, 41);
 }
 
+p {
+    margin: 40px 0px;
+}
+
 #nav {
     margin-bottom: 40px;
 }
@@ -11,6 +15,10 @@ body {
 #config {
     font-size: large;
     font-weight: 800;
+}
+
+#forecast {
+    margin: 40px
 }
 
 #cursor {
