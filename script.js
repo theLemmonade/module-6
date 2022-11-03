@@ -2,12 +2,13 @@
 const key = '1e54c9189a2b15bd040a0eeca759c306';
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchButton');
-const results = document.getElementById('results')
+const results = document.getElementById('results');
 const result = document.getElementsByClassName('result');
 const today = document.getElementById('today');
 const forecast = document.getElementById('forecast');
+const d0 = document.getElementById('0');
 var resultsArr = Array;
-resultsArr = ['London']
+resultsArr = ['London'];
 var setting = String;
 setting = 'London';
 
@@ -33,7 +34,7 @@ function runCall() {//fetches 5 day forecast based var setting
     });
 };
 
-function runArray() {//keep results array tidy
+function runArray() {//keep results array tidy from duplicates
     console.log('runArray')
     if (resultsArr.includes(setting)) {
         return;
@@ -42,16 +43,65 @@ function runArray() {//keep results array tidy
     };
 }
 
-function drawCall() {
+function drawCall(data) {
     console.log('drawCall');
     today.innerHTML = setting;
+    var toAdd = document.createDocumentFragment();
+    var temp = document.createElement('p');
+    temp.innerHTML = 'the temperature feels like ' + data.list[0].main.feels_like + ' degrees farenheit';
+    toAdd.appendChild(temp);
+    var rain = document.createElement('p');
+    rain.innerHTML = 'the chance of rain is ' + data.list[0].rain["3h"] + '%';
+    toAdd.appendChild(rain);
+    var cond = document.createElement('p');
+    cond.innerHTML = 'the conditions call for ' + data.list[0].weather[0].main;
+    toAdd.appendChild(cond);
+    var wind = document.createElement('p');
+    wind.innerHTML = 'the wind speed is ' + data.list[0].wind.speed + 'mph';
+    toAdd.appendChild(wind);
+    var hmdt = document.createElement('p');
+    hmdt.innerHTML = 'the humidity is ' + data.list[0].main.humidity + '%';
+    toAdd.appendChild(hmdt);
+    d0.appendChild(toAdd);
+    var toLoop = document.createDocumentFragment();
+    for (let i = 1; i < 5; i++) {
+        var article = document.createElement('article')
+        article.setAttribute('id', [i])
+        article.className = 'col-md'
+        if (i === 1) {
+            var tomorrow = document.createElement('h5');
+            tomorrow.innerHTML = 'tomorrow';
+            article.appendChild(tomorrow);
+        } else {
+            var dateTitle = document.createElement('h5');
+            var date = data.list[i].dt_txt;
+            var substr = date.substr(5, 6);
+            dateTitle.innerHTML = substr;
+            article.appendChild(dateTitle);
+        }
+        var temp = document.createElement('p');
+        temp.innerHTML = 'temp: ' + data.list[i].main.feels_like + 'F';
+        toLoop.appendChild(temp);
+        // var rain = document.createElement('p');
+        // rain.innerHTML = 'the chance of rain is ' + data.list[i].rain["3h"] + '%';
+        // toLoop.appendChild(rain);
+        var cond = document.createElement('p');
+        cond.innerHTML = 'conditions: ' + data.list[i].weather[0].main;
+        toLoop.appendChild(cond);
+        var wind = document.createElement('p');
+        wind.innerHTML = 'wind: ' + data.list[i].wind.speed + 'mph';
+        toLoop.appendChild(wind);
+        var hmdt = document.createElement('p');
+        hmdt.innerHTML = 'humidity: ' + data.list[i].main.humidity + '%';
+        toLoop.appendChild(hmdt);
+        article.appendChild(toLoop);
+        forecast.appendChild(article);
+    };
 }
 
 function drawResults() {//keeps history of user searches, allows them to be called again
     console.log('drawResults');
-    if (results != null) {
-        results.remove;
-    }
+    results.innerHTML = "";
     var toAdd = document.createDocumentFragment();
     for (var i = 0; i < resultsArr.length; i++) {
         var newResult = document.createElement("button");
@@ -87,3 +137,4 @@ function reRunSearch() {//redefines setting based on past entry, recalls functio
 
 searchBtn.addEventListener("click", runSearch);
 drawResults();
+runCall();
