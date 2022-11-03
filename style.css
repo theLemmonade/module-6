@@ -52,7 +52,7 @@ p {
 }
  
 
-.btn:hover, .history:hover {
+.btn:hover, .history:hover, .result:hover {
     background: limegreen;
 }
 
