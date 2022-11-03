@@ -6,7 +6,7 @@ const results = document.getElementById('results');
 const result = document.getElementsByClassName('result');
 const today = document.getElementById('today');
 const forecast = document.getElementById('forecast');
-const d0 = document.getElementById('0');
+const weather = document.getElementById('weather');
 var resultsArr = Array;
 resultsArr = ['London'];
 var setting = String;
@@ -46,13 +46,12 @@ function runArray() {//keep results array tidy from duplicates
 function drawCall(data) {
     console.log('drawCall');
     today.innerHTML = setting;
+    weather.innerHTML = ''
+    forecast.innerHTML = ''
     var toAdd = document.createDocumentFragment();
     var temp = document.createElement('p');
     temp.innerHTML = 'the temperature feels like ' + data.list[0].main.feels_like + ' degrees farenheit';
     toAdd.appendChild(temp);
-    var rain = document.createElement('p');
-    rain.innerHTML = 'the chance of rain is ' + data.list[0].rain["3h"] + '%';
-    toAdd.appendChild(rain);
     var cond = document.createElement('p');
     cond.innerHTML = 'the conditions call for ' + data.list[0].weather[0].main;
     toAdd.appendChild(cond);
@@ -62,7 +61,7 @@ function drawCall(data) {
     var hmdt = document.createElement('p');
     hmdt.innerHTML = 'the humidity is ' + data.list[0].main.humidity + '%';
     toAdd.appendChild(hmdt);
-    d0.appendChild(toAdd);
+    weather.appendChild(toAdd);
     var toLoop = document.createDocumentFragment();
     for (let i = 1; i < 5; i++) {
         var article = document.createElement('article')
@@ -82,9 +81,6 @@ function drawCall(data) {
         var temp = document.createElement('p');
         temp.innerHTML = 'temp: ' + data.list[i].main.feels_like + 'F';
         toLoop.appendChild(temp);
-        // var rain = document.createElement('p');
-        // rain.innerHTML = 'the chance of rain is ' + data.list[i].rain["3h"] + '%';
-        // toLoop.appendChild(rain);
         var cond = document.createElement('p');
         cond.innerHTML = 'conditions: ' + data.list[i].weather[0].main;
         toLoop.appendChild(cond);
